@@ -11,7 +11,9 @@ Connect with us on Discord or Telegram for further support/details or to make a 
 The endpoints are:
 
 http://xxxx/topwallets
+
 http://xxxx/show_wallet=<wallet addr>
+  
 http://xxxx/total_supply
 
 
