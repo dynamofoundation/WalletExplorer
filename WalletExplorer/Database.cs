@@ -149,6 +149,7 @@ namespace WalletExplorer
             MySqlConnection conn = new MySqlConnection(strConn);
             conn.Open();
             MySqlCommand cmd = new MySqlCommand(strSQL, conn);
+            cmd.Parameters.AddWithValue("@1", addr);
             MySqlDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
