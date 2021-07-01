@@ -21,7 +21,7 @@ namespace WalletExplorer
 
             listener = new HttpListener();
 
-            listener.Prefixes.Add("http://192.168.1.27:90/");
+            listener.Prefixes.Add("http://10.1.0.253:90/");
 
             listener.Start();
             Console.WriteLine("Listening...");

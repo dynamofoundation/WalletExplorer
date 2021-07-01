@@ -23,7 +23,7 @@ namespace WalletExplorer
                 UInt32 currentHeight = getCurrentHeight();
                 if (lastBlock < currentHeight)
                 {
-                    while (lastBlock < currentHeight) {
+                    while ((lastBlock < currentHeight) && (!Global.shutdown)) {
                         lastBlock++;
                         parseBlock(lastBlock);
                         if (lastBlock % 100 == 0)
