@@ -119,7 +119,7 @@ namespace WalletExplorer
 
             string result = "<html><body><table border=\"1\">";
 
-            string strSQL = "select addr_id, addr_balance/ 100000000 from addr order by addr_balance desc limit 20";
+            string strSQL = "select addr_id, addr_balance/ 100000000 from addr order by addr_balance desc limit 100";
             MySqlConnection conn = new MySqlConnection(strConn);
             conn.Open();
             MySqlCommand cmd = new MySqlCommand(strSQL, conn);
@@ -171,6 +171,18 @@ namespace WalletExplorer
             return getSetting("last_block");
         }
 
+        public static UInt32 walletCount()
+        {
+            string strSQL = "select count(1) from addr where addr_balance > 0";
+            MySqlConnection conn = new MySqlConnection(strConn);
+            conn.Open();
+            MySqlCommand cmd = new MySqlCommand(strSQL, conn);
+            cmd.Parameters.AddWithValue("@1", address);
+            UInt32 result = Convert.ToUInt32(cmd.ExecuteScalar().ToString());
+            conn.Close();
+            return result;
+
+        }
 
     }
 }

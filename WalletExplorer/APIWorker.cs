@@ -39,6 +39,10 @@ namespace WalletExplorer
                     strResponse = Database.getTotalSupply();
                 }
 
+                else if (endpoint.StartsWith("wallet_count"))
+                {
+                    strResponse = Database.walletCount();
+                }
 
 
 
