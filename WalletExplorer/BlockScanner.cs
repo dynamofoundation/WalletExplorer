@@ -21,9 +21,9 @@ namespace WalletExplorer
             {
                 UInt32 lastBlock = (UInt32)Convert.ToInt32(Database.getSetting("last_block"));
                 UInt32 currentHeight = getCurrentHeight();
-                if (lastBlock < currentHeight)
+                if (lastBlock < currentHeight - 20)
                 {
-                    while ((lastBlock < currentHeight) && (!Global.shutdown)) {
+                    while ((lastBlock < currentHeight - 20) && (!Global.shutdown)) {
                         lastBlock++;
                         parseBlock(lastBlock);
                         if (lastBlock % 100 == 0)

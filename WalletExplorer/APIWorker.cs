@@ -41,7 +41,7 @@ namespace WalletExplorer
 
                 else if (endpoint.StartsWith("wallet_count"))
                 {
-                    strResponse = Database.walletCount();
+                    strResponse = Database.walletCount().ToString();
                 }
 
 

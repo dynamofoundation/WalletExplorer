@@ -41,16 +41,23 @@ namespace WalletExplorer
         {
             amount *= 100000000m;
 
-            string strSQL = "insert into tx (tx_id, tx_vout, tx_amount, tx_addr) values (@1, @2, @3, @4)";
-            MySqlConnection conn = new MySqlConnection(strConn);
-            conn.Open();
-            MySqlCommand cmd = new MySqlCommand(strSQL, conn);
-            cmd.Parameters.AddWithValue("@1", txID);
-            cmd.Parameters.AddWithValue("@2", n);
-            cmd.Parameters.AddWithValue("@3", amount);
-            cmd.Parameters.AddWithValue("@4", address);
-            cmd.ExecuteNonQuery();
-            conn.Close();
+            try
+            {
+                string strSQL = "insert into tx (tx_id, tx_vout, tx_amount, tx_addr) values (@1, @2, @3, @4)";
+                MySqlConnection conn = new MySqlConnection(strConn);
+                conn.Open();
+                MySqlCommand cmd = new MySqlCommand(strSQL, conn);
+                cmd.Parameters.AddWithValue("@1", txID);
+                cmd.Parameters.AddWithValue("@2", n);
+                cmd.Parameters.AddWithValue("@3", amount);
+                cmd.Parameters.AddWithValue("@4", address);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch (Exception e)
+            {
+                //todo - figure out if duplicates still being inserted after frok protection change put in
+            }
 
         }
 
@@ -177,7 +184,6 @@ namespace WalletExplorer
             MySqlConnection conn = new MySqlConnection(strConn);
             conn.Open();
             MySqlCommand cmd = new MySqlCommand(strSQL, conn);
-            cmd.Parameters.AddWithValue("@1", address);
             UInt32 result = Convert.ToUInt32(cmd.ExecuteScalar().ToString());
             conn.Close();
             return result;
